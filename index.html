@@ -3,13 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snake Game</title>
+  <title>Cookie Clicker</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Snake Game</h1>
-  <div id="game-board"></div>
-  <p id="score">Score: 0</p>
+  <h1>Cookie Clicker</h1>
+  <div class="game-container">
+    <div class="cookie" onclick="clickCookie()">
+      <img src="https://i.imgur.com/nGF1K8f.png" alt="Cookie">
+    </div>
+    <p id="cookie-count">Cookies: 0</p>
+    
+    <div class="upgrades">
+      <h2>Upgrades</h2>
+      <button onclick="buyUpgrade('grandma')" id="grandma-button">Grandma - Cost: 10 Cookies</button>
+      <button onclick="buyUpgrade('farm')" id="farm-button">Farm - Cost: 50 Cookies</button>
+      <button onclick="buyUpgrade('factory')" id="factory-button">Factory - Cost: 250 Cookies</button>
+    </div>
+  </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
