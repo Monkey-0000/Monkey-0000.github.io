@@ -1,117 +1,52 @@
-// Constants and game settings
-const gameBoard = document.getElementById("game-board");
-const scoreDisplay = document.getElementById("score");
-const boardSize = 20;
-let snake = [{ x: 10, y: 10 }];
-let food = { x: 5, y: 5 };
-let direction = { x: 0, y: 0 };
-let score = 0;
+let cookieCount = 0;
+let cps = 0; // Cookies per second
+const upgrades = {
+  grandma: { count: 0, cps: 1, cost: 10 },
+  farm: { count: 0, cps: 5, cost: 50 },
+  factory: { count: 0, cps: 25, cost: 250 }
+};
 
-// Initialize game board
-function createBoard() {
-  gameBoard.innerHTML = '';
-  for (let i = 0; i < boardSize * boardSize; i++) {
-    const cell = document.createElement("div");
-    gameBoard.appendChild(cell);
+// Update the cookie display
+function updateCookieDisplay() {
+  document.getElementById("cookie-count").innerText = `Cookies: ${cookieCount.toFixed(0)}`;
+  document.getElementById("grandma-button").innerText = `Grandma - Cost: ${upgrades.grandma.cost} Cookies`;
+  document.getElementById("farm-button").innerText = `Farm - Cost: ${upgrades.farm.cost} Cookies`;
+  document.getElementById("factory-button").innerText = `Factory - Cost: ${upgrades.factory.cost} Cookies`;
+}
+
+// Click the cookie to add to total cookies
+function clickCookie() {
+  cookieCount += 1;
+  updateCookieDisplay();
+}
+
+// Purchase an upgrade
+function buyUpgrade(type) {
+  const upgrade = upgrades[type];
+  if (cookieCount >= upgrade.cost) {
+    cookieCount -= upgrade.cost;
+    upgrade.count += 1;
+    cps += upgrade.cps;
+    upgrade.cost = Math.floor(upgrade.cost * 1.15); // Increase the cost for each purchase
+    updateCookieDisplay();
   }
 }
 
-// Update the game board based on snake and food positions
-function updateBoard() {
-  const cells = gameBoard.children;
-  Array.from(cells).forEach(cell => cell.className = '');
-
-  snake.forEach(part => {
-    const index = part.y * boardSize + part.x;
-    cells[index].classList.add("snake");
-  });
-
-  const foodIndex = food.y * boardSize + food.x;
-  cells[foodIndex].classList.add("food");
+// Passive income from upgrades
+function generateCookies() {
+  cookieCount += cps / 10;
+  updateCookieDisplay();
 }
 
-// Move the snake
-function moveSnake() {
-  const newHead = {
-    x: snake[0].x + direction.x,
-    y: snake[0].y + direction.y
-  };
-
-  // Wrap around the board edges
-  newHead.x = (newHead.x + boardSize) % boardSize;
-  newHead.y = (newHead.y + boardSize) % boardSize;
-
-  // Check for collision with self
-  if (snake.some(part => part.x === newHead.x && part.y === newHead.y)) {
-    alert("Game Over! Your score: " + score);
-    resetGame();
-    return;
-  }
-
-  snake.unshift(newHead);
-
-  // Check for food collection
-  if (newHead.x === food.x && newHead.y === food.y) {
-    score++;
-    scoreDisplay.textContent = "Score: " + score;
-    placeFood();
-  } else {
-    snake.pop();
-  }
-
-  updateBoard();
+// Check if upgrades are affordable and update button state
+function updateButtonState() {
+  document.getElementById("grandma-button").disabled = cookieCount < upgrades.grandma.cost;
+  document.getElementById("farm-button").disabled = cookieCount < upgrades.farm.cost;
+  document.getElementById("factory-button").disabled = cookieCount < upgrades.factory.cost;
 }
 
-// Place food in a random position
-function placeFood() {
-  food = {
-    x: Math.floor(Math.random() * boardSize),
-    y: Math.floor(Math.random() * boardSize)
-  };
-
-  // Avoid placing food on the snake
-  if (snake.some(part => part.x === food.x && part.y === food.y)) {
-    placeFood();
-  }
-}
-
-// Reset game
-function resetGame() {
-  snake = [{ x: 10, y: 10 }];
-  direction = { x: 0, y: 0 };
-  score = 0;
-  scoreDisplay.textContent = "Score: " + score;
-  placeFood();
-  updateBoard();
-}
-
-// Handle keyboard input
-document.addEventListener("keydown", e => {
-  switch (e.key) {
-    case "ArrowUp":
-      if (direction.y === 0) direction = { x: 0, y: -1 };
-      break;
-    case "ArrowDown":
-      if (direction.y === 0) direction = { x: 0, y: 1 };
-      break;
-    case "ArrowLeft":
-      if (direction.x === 0) direction = { x: -1, y: 0 };
-      break;
-    case "ArrowRight":
-      if (direction.x === 0) direction = { x: 1, y: 0 };
-      break;
-  }
-});
-
-// Game loop
-function gameLoop() {
-  setTimeout(() => {
-    moveSnake();
-    gameLoop();
-  }, 200);
-}
-
-// Start the game
-createBoard();
-resetGame();
-gameLoop();
+// Main game loop
+setInterval(() => {
+  generateCookies();
+  updateButtonState();
+}, 100);
