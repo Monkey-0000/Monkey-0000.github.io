@@ -1,41 +1,66 @@
-/* General styling */
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: Arial, sans-serif;
-  background-color: #222;
-  color: #fff;
-  margin: 0;
-  height: 100vh;
-  justify-content: center;
+  background-color: #f8e7d1;
+  color: #4b2e1e;
 }
 
-/* Game board styling */
-#game-board {
-  display: grid;
-  grid-template-rows: repeat(20, 20px);
-  grid-template-columns: repeat(20, 20px);
-  gap: 1px;
-  background-color: #333;
-  border: 2px solid #fff;
+h1 {
+  font-size: 2.5em;
+  margin-top: 20px;
 }
 
-#game-board div {
-  width: 20px;
-  height: 20px;
-  background-color: #333;
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.snake {
-  background-color: #00ff00;
+.cookie {
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-.food {
-  background-color: #ff0000;
+.cookie img {
+  width: 150px;
+  transition: transform 0.1s;
 }
 
-#score {
-  margin-top: 10px;
-  font-size: 1.2em;
+.cookie img:active {
+  transform: scale(0.9);
+}
+
+#cookie-count {
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+
+.upgrades {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upgrades button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  font-size: 1.1em;
+  background-color: #d38e51;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.upgrades button:hover {
+  background-color: #c87d41;
+}
+
+.upgrades button:disabled {
+  background-color: #b5b5b5;
+  cursor: not-allowed;
 }
