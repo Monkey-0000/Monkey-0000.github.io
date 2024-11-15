@@ -27,7 +27,7 @@ function buyUpgrade(upgrade) {
     upgrades[upgrade].cost = Math.floor(upgrades[upgrade].cost * 1.2); // Increase cost by 20%
     updateDisplay();
   } else {
-    alert("Not enough cookies! NIGGAAA");
+    alert("Not enough cookies!");
   }
 }
 
@@ -36,12 +36,13 @@ function updateDisplay() {
   document.getElementById("cookie-count").innerText = `Cookies: ${cookies}`;
   for (let upgrade in upgrades) {
     const button = document.getElementById(`${upgrade}-button`);
-    if (button) {
+    const count = document.getElementById(`${upgrade}-count`);
+    if (button && count) {
       button.innerText = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost} Cookies`;
+      count.innerText = `${upgrades[upgrade].count} Bought`;
     }
   }
 }
-
 // Auto-generate cookies
 setInterval(() => {
   cookies += cps;
