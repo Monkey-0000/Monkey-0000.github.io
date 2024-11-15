@@ -57,3 +57,21 @@ h1 {
   color: #555;
   margin-left: 10px;
 }
+
+.upgrades button {
+  margin: 5px 0;
+}
+
+.upgrades .bulk-buy {
+  background-color: #ffa500;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.upgrades .bulk-buy:hover {
+  background-color: #ff8c00;
+}
