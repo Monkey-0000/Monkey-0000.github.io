@@ -27,7 +27,7 @@ function buyUpgrade(upgrade) {
     upgrades[upgrade].cost = Math.floor(upgrades[upgrade].cost * 1.2); // Increase cost by 20%
     updateDisplay();
   } else {
-    alert("Not enough cookies!");
+    alert("Not enough cookies! NIGGAAA");
   }
 }
 
