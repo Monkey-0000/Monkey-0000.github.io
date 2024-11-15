@@ -14,7 +14,7 @@ let upgrades = {
 
 // Function to click the Banana
 function clickBanana() {
-  bananas += 100000;
+  bananas += 10;
   updateDisplay();
 }
 
@@ -27,7 +27,7 @@ function buyUpgrade(upgrade, quantity = 1) {
   for (let i = 0; i < quantity; i++) {
     let nextCost = Math.floor(upgrades[upgrade].cost * Math.pow(1.2, upgrades[upgrade].count + i));
     totalCost += nextCost;
-    if (totalCost > bananas) {
+    if (totalCost > bananas) {/ 
       canAfford = false;
       break;
     }
