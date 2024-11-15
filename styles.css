@@ -17,12 +17,13 @@ h1 {
   padding: 20px;
 }
 
-.cookie img {
+.Banana img {
   width: 200px;
   cursor: pointer;
 }
 
-#cookie-count {
+
+#Banana-count {
   font-size: 1.5rem;
   margin: 10px 0;
 }
