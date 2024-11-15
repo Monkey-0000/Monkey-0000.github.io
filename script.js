@@ -49,7 +49,6 @@ function buyUpgrade(upgrade, quantity = 1) {
   }
 }
 
-
 // Function to update the display
 function updateDisplay() {
   document.getElementById("cookie-count").innerText = `Cookies: ${cookies}`;
@@ -62,6 +61,7 @@ function updateDisplay() {
     }
   }
 }
+
 // Auto-generate cookies
 setInterval(() => {
   cookies += cps;
@@ -72,3 +72,39 @@ setInterval(() => {
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+// Save game state to localStorage
+function saveGame() {
+  const gameData = {
+    cookies: cookies,
+    cps: cps,
+    upgrades: upgrades,
+  };
+  localStorage.setItem("cookieClickerSave", JSON.stringify(gameData));
+  console.log("Game Saved!");
+}
+
+// Load game state from localStorage
+function loadGame() {
+  const savedData = localStorage.getItem("cookieClickerSave");
+  if (savedData) {
+    const gameData = JSON.parse(savedData);
+    cookies = gameData.cookies || 0;
+    cps = gameData.cps || 0;
+    upgrades = gameData.upgrades || upgrades;
+    updateDisplay();
+    console.log("Game Loaded!");
+  }
+}
+
+// Reset game state
+function resetGame() {
+  localStorage.removeItem("cookieClickerSave");
+  location.reload();
+}
+
+// Auto-save every 10 seconds
+setInterval(saveGame, 10000);
+
+// Load game on page load
+window.onload = loadGame;
