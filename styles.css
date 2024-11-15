@@ -1,66 +1,53 @@
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: Arial, sans-serif;
-  background-color: #f8e7d1;
-  color: #4b2e1e;
+  text-align: center;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   margin-top: 20px;
 }
 
 .game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.cookie {
-  margin-top: 20px;
-  cursor: pointer;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .cookie img {
-  width: 150px;
-  transition: transform 0.1s;
-}
-
-.cookie img:active {
-  transform: scale(0.9);
+  width: 200px;
+  cursor: pointer;
 }
 
 #cookie-count {
-  font-size: 1.5em;
-  margin: 20px 0;
+  font-size: 1.5rem;
+  margin: 10px 0;
 }
 
 .upgrades {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 20px;
+}
+
+.upgrades h2 {
+  font-size: 1.8rem;
 }
 
 .upgrades button {
-  padding: 10px 20px;
+  display: block;
+  width: 100%;
   margin: 10px 0;
-  font-size: 1.1em;
-  background-color: #d38e51;
-  border: none;
-  border-radius: 5px;
-  color: white;
+  padding: 10px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  background-color: #ffd700;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .upgrades button:hover {
-  background-color: #c87d41;
-}
-
-.upgrades button:disabled {
-  background-color: #b5b5b5;
-  cursor: not-allowed;
+  background-color: #ffc107;
 }
