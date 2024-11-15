@@ -25,7 +25,7 @@ function buyUpgrade(upgrade, quantity = 1) {
 
   // Calculate the total cost for the quantity
   for (let i = 0; i < quantity; i++) {
-    let nextCost = Math.floor(upgrades[upgrade].cost * Math.pow(1.2, upgrades[upgrade].count + i));
+    let nextCost = Math.floor(upgrades[upgrade].cost * Math.pow(1.1, upgrades[upgrade].count + i));
     totalCost += nextCost;
     if (totalCost > bananas) {/ 
       canAfford = false;
