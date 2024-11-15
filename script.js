@@ -12,8 +12,8 @@ let upgrades = {
   dimensionRift: { cost: 500000, cps: 50000, count: 0 },
 };
 
-// Function to click the cookie
-function clickCookie() {
+// Function to click the Banana
+function clickBanana() {
   bananas += 100000;
   updateDisplay();
 }
@@ -51,7 +51,7 @@ function buyUpgrade(upgrade, quantity = 1) {
 
 // Function to update the display
 function updateDisplay() {
-  document.getElementById("cookie-count").innerText = `bananas: ${bananas}`;
+  document.getElementById("Banana-count").innerText = `bananas: ${bananas}`;
   for (let upgrade in upgrades) {
     const button = document.getElementById(`${upgrade}-button`);
     const count = document.getElementById(`${upgrade}-count`);
@@ -80,13 +80,13 @@ function saveGame() {
     cps: cps,
     upgrades: upgrades,
   };
-  localStorage.setItem("cookieClickerSave", JSON.stringify(gameData));
+  localStorage.setItem("BananaClickerSave", JSON.stringify(gameData));
   console.log("Game Saved!");
 }
 
 // Load game state from localStorage
 function loadGame() {
-  const savedData = localStorage.getItem("cookieClickerSave");
+  const savedData = localStorage.getItem("BananaClickerSave");
   if (savedData) {
     const gameData = JSON.parse(savedData);
     bananas = gameData.bananas || 0;
@@ -99,7 +99,7 @@ function loadGame() {
 
 // Reset game state
 function resetGame() {
-  localStorage.removeItem("cookieClickerSave");
+  localStorage.removeItem("BananaClickerSave");
   location.reload();
 }
 
