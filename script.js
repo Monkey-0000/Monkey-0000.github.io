@@ -14,7 +14,7 @@ let upgrades = {
 
 // Function to click the cookie
 function clickCookie() {
-  cookies += 1000000000000000000;
+  cookies += 100000;
   updateDisplay();
 }
 
