@@ -51,3 +51,9 @@ h1 {
 .upgrades button:hover {
   background-color: #ffc107;
 }
+
+.upgrades span {
+  font-size: 0.9rem;
+  color: #555;
+  margin-left: 10px;
+}
