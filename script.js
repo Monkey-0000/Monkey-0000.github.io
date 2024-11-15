@@ -1,5 +1,5 @@
-let cookies = 0;
-let cps = 0; // Cookies per second
+let bananas = 0;
+let cps = 0; // bananas per second
 let upgrades = {
   grandma: { cost: 10, cps: 1, count: 0 },
   farm: { cost: 50, cps: 5, count: 0 },
@@ -14,7 +14,7 @@ let upgrades = {
 
 // Function to click the cookie
 function clickCookie() {
-  cookies += 100000;
+  bananas += 100000;
   updateDisplay();
 }
 
@@ -27,14 +27,14 @@ function buyUpgrade(upgrade, quantity = 1) {
   for (let i = 0; i < quantity; i++) {
     let nextCost = Math.floor(upgrades[upgrade].cost * Math.pow(1.2, upgrades[upgrade].count + i));
     totalCost += nextCost;
-    if (totalCost > cookies) {
+    if (totalCost > bananas) {
       canAfford = false;
       break;
     }
   }
 
   if (canAfford) {
-    cookies -= totalCost;
+    bananas -= totalCost;
 
     // Add upgrades and increase CPS
     for (let i = 0; i < quantity; i++) {
@@ -45,26 +45,26 @@ function buyUpgrade(upgrade, quantity = 1) {
 
     updateDisplay();
   } else {
-    alert(`Not enough cookies to buy ${quantity} of ${capitalize(upgrade)}!`);
+    alert(`Not enough bananas to buy ${quantity} of ${capitalize(upgrade)}!`);
   }
 }
 
 // Function to update the display
 function updateDisplay() {
-  document.getElementById("cookie-count").innerText = `Cookies: ${cookies}`;
+  document.getElementById("cookie-count").innerText = `bananas: ${bananas}`;
   for (let upgrade in upgrades) {
     const button = document.getElementById(`${upgrade}-button`);
     const count = document.getElementById(`${upgrade}-count`);
     if (button && count) {
-      button.innerText = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost} Cookies`;
+      button.innerText = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost} bananas`;
       count.innerText = `${upgrades[upgrade].count} Bought`;
     }
   }
 }
 
-// Auto-generate cookies
+// Auto-generate bananas
 setInterval(() => {
-  cookies += cps;
+  bananas += cps;
   updateDisplay();
 }, 1000);
 
@@ -76,7 +76,7 @@ function capitalize(str) {
 // Save game state to localStorage
 function saveGame() {
   const gameData = {
-    cookies: cookies,
+    bananas: bananas,
     cps: cps,
     upgrades: upgrades,
   };
@@ -89,7 +89,7 @@ function loadGame() {
   const savedData = localStorage.getItem("cookieClickerSave");
   if (savedData) {
     const gameData = JSON.parse(savedData);
-    cookies = gameData.cookies || 0;
+    bananas = gameData.bananas || 0;
     cps = gameData.cps || 0;
     upgrades = gameData.upgrades || upgrades;
     updateDisplay();
