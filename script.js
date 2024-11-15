@@ -19,17 +19,36 @@ function clickCookie() {
 }
 
 // Function to buy an upgrade
-function buyUpgrade(upgrade) {
-  if (cookies >= upgrades[upgrade].cost) {
-    cookies -= upgrades[upgrade].cost;
-    upgrades[upgrade].count += 1;
-    cps += upgrades[upgrade].cps;
-    upgrades[upgrade].cost = Math.floor(upgrades[upgrade].cost * 1.2); // Increase cost by 20%
+function buyUpgrade(upgrade, quantity = 1) {
+  let totalCost = 0;
+  let canAfford = true;
+
+  // Calculate the total cost for the quantity
+  for (let i = 0; i < quantity; i++) {
+    let nextCost = Math.floor(upgrades[upgrade].cost * Math.pow(1.2, upgrades[upgrade].count + i));
+    totalCost += nextCost;
+    if (totalCost > cookies) {
+      canAfford = false;
+      break;
+    }
+  }
+
+  if (canAfford) {
+    cookies -= totalCost;
+
+    // Add upgrades and increase CPS
+    for (let i = 0; i < quantity; i++) {
+      upgrades[upgrade].count += 1;
+      cps += upgrades[upgrade].cps;
+      upgrades[upgrade].cost = Math.floor(upgrades[upgrade].cost * 1.2); // Update cost for next purchase
+    }
+
     updateDisplay();
   } else {
-    alert("Not enough cookies!");
+    alert(`Not enough cookies to buy ${quantity} of ${capitalize(upgrade)}!`);
   }
 }
+
 
 // Function to update the display
 function updateDisplay() {
