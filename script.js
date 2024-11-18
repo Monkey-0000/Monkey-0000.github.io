@@ -29,7 +29,7 @@ function buyUpgrade(upgrade, quantity = 1) {
   for (let i = 0; i < quantity; i++) {
     let nextCost = Math.floor(upgrades[upgrade].cost * Math.pow(1.1, upgrades[upgrade].count + i));
     totalCost += nextCost;
-    if (totalCost > bananas) {/ 
+    if (totalCost > bananas) { 
       canAfford = false;
       break;
     }
@@ -53,7 +53,7 @@ function buyUpgrade(upgrade, quantity = 1) {
 
 // Function to update the display
 function updateDisplay() {
-  document.getElementById("Banana-count").innerText = `bananas: ${bananas}`;
+  document.getElementById("banana-count").innerText = `Bananas: ${bananas}`;
   for (let upgrade in upgrades) {
     const button = document.getElementById(`${upgrade}-button`);
     const count = document.getElementById(`${upgrade}-count`);
