@@ -1,6 +1,7 @@
 let bananas = 0;
 let cps = 0; // bananas per second
 let upgrades = {
+  cpsincrease: { cost: 10, cps: 1, count: 0},
   grandma: { cost: 10, cps: 1, count: 0 },
   farm: { cost: 50, cps: 5, count: 0 },
   factory: { cost: 250, cps: 20, count: 0 },
@@ -53,12 +54,12 @@ function buyUpgrade(upgrade, quantity = 1) {
 
 // Function to update the display
 function updateDisplay() {
-  document.getElementById("banana-count").innerText = `Bananas: ${bananas}`;
+  document.getElementById("banana-count").innerText = `Bananas: ${bananas.toLocaleString()}`;
   for (let upgrade in upgrades) {
     const button = document.getElementById(`${upgrade}-button`);
     const count = document.getElementById(`${upgrade}-count`);
     if (button && count) {
-      button.innerText = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost} bananas`;
+      button.innerText = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost.toLocaleString()} Bananas`;
       count.innerText = `${upgrades[upgrade].count} Bought`;
     }
   }
