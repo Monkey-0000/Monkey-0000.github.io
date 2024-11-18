@@ -16,7 +16,7 @@ let upgrades = {
 
 // Function to click the Banana
 function clickBanana() {
-  bananas += 10;
+  bananas += 1;
   updateDisplay();
 }
 
