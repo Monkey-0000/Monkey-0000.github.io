@@ -76,3 +76,19 @@ h1 {
 .upgrades .bulk-buy:hover {
   background-color: #ff8c00;
 }
+
+#reset-button {
+  background-color: #ff4d4d; /* Red color to indicate reset */
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+  background-color: #e60000; /* Darker red on hover */
+}

@@ -17,9 +17,16 @@
     
     <div class="upgrades">
       <h2>Upgrades</h2>
-
+      
+      <button onclick="buyUpgrade('cpsincrease', 1)" id="grandma-button">Palm Tree - Cost: 10 Bananas</button>
+      <span id="grandma-count">0 Bought</span>
+      <br>
+      <button onclick="buyUpgrade('cpsincrease', 10)" class="bulk-buy">Buy 10</button>
+      <button onclick="buyUpgrade('cpsincrease', 100)" class="bulk-buy">Buy 100</button>
+      <br>
+      
       <!-- Grandma -->
-      <button onclick="buyUpgrade('grandma', 1)" id="grandma-button">Grandma - Cost: 10 Bananas</button>
+      <button onclick="buyUpgrade('grandma', 1)" id="grandma-button">Grandma - Cost: 100 Bananas</button>
       <span id="grandma-count">0 Bought</span>
       <br>
       <button onclick="buyUpgrade('grandma', 10)" class="bulk-buy">Buy 10</button>
@@ -27,7 +34,7 @@
       <br>
 
       <!-- Farm -->
-      <button onclick="buyUpgrade('farm', 1)" id="farm-button">Farm - Cost: 50 Bananas</button>
+      <button onclick="buyUpgrade('farm', 1)" id="farm-button">Farm - Cost: 250 Bananas</button>
       <span id="farm-count">0 Bought</span>
       <br>
       <button onclick="buyUpgrade('farm', 10)" class="bulk-buy">Buy 10</button>
@@ -35,7 +42,7 @@
       <br>
 
       <!-- Factory -->
-      <button onclick="buyUpgrade('factory', 1)" id="factory-button">Factory - Cost: 250 Bananas</button>
+      <button onclick="buyUpgrade('factory', 1)" id="factory-button">Factory - Cost: 500 Bananas</button>
       <span id="factory-count">0 Bought</span>
       <br>
       <button onclick="buyUpgrade('factory', 10)" class="bulk-buy">Buy 10</button>
@@ -43,7 +50,7 @@
       <br>
 
       <!-- Bakery -->
-      <button onclick="buyUpgrade('bakery', 1)" id="bakery-button">Bakery - Cost: 500 Bananas</button>
+      <button onclick="buyUpgrade('bakery', 1)" id="bakery-button">Bakery - Cost: 750 Bananas</button>
       <span id="bakery-count">0 Bought</span>
       <br>
       <button onclick="buyUpgrade('bakery', 10)" class="bulk-buy">Buy 10</button>
@@ -96,6 +103,8 @@
       <button onclick="buyUpgrade('bananauniverse', 10)" class="bulk-buy">Buy 10</button>
       <button onclick="buyUpgrade('bananauniverse', 100)" class="bulk-buy">Buy 100</button>
       <br>
+
+      <button id="reset-button" onclick="resetGame()">Reset Game</button>
     </div>
   </div>
   

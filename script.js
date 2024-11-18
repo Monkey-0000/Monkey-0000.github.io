@@ -64,6 +64,28 @@ function updateDisplay() {
   }
 }
 
+function resetGame() {
+  // Clear saved data from localStorage
+  localStorage.removeItem("BananaClickerSave");
+
+  // Reset game variables
+  bananas = 0;
+  cps = 0;
+  for (let upgrade in upgrades) {
+    upgrades[upgrade].count = 0;
+    upgrades[upgrade].cost = upgrades[upgrade].cost / Math.pow(1.2, upgrades[upgrade].count); // Reset cost
+  }
+
+  // Update the display
+  updateDisplay();
+
+  // Reload the page (optional, for full reset)
+  // location.reload();
+
+  alert("Game has been reset!");
+}
+
+
 // Auto-generate bananas
 setInterval(() => {
   bananas += cps;
