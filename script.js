@@ -52,16 +52,21 @@ function buyUpgrade(upgrade, quantity = 1) {
   }
 }
 
-// Function to update the display
-function updateDisplay() {
-  document.getElementById("banana-count").innerText = `Bananas: ${bananas.toLocaleString()}`;
-  for (let upgrade in upgrades) {
-    const button = document.getElementById(`${upgrade}-button`);
-    const count = document.getElementById(`${upgrade}-count`);
-    if (button && count) {
-      button.innerText = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost.toLocaleString()} Bananas`;
-      count.innerText = `${upgrades[upgrade].count} Bought`;
-    }
+function buyUpgrade(upgrade, quantity = 1) {
+  // Calculate total cost for the specified quantity
+  const totalCost = upgrades[upgrade].cost * quantity;
+
+  if (bananas >= totalCost) {
+    // Deduct the total cost
+    bananas -= totalCost;
+
+    // Add the quantity of upgrades and increase CPS
+    upgrades[upgrade].count += quantity;
+    cps += upgrades[upgrade].cps * quantity;
+
+    updateDisplay();
+  } else {
+    alert(`Not enough bananas to buy ${quantity} of ${capitalize(upgrade)}!`);
   }
 }
 
