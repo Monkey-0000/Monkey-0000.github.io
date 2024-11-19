@@ -22,7 +22,8 @@ h1 {
   cursor: pointer;
 }
 
-#banana-count {
+
+#Banana-count {
   font-size: 1.5rem;
   margin: 10px 0;
 }
@@ -56,6 +57,24 @@ h1 {
   font-size: 0.9rem;
   color: #555;
   margin-left: 10px;
+}
+
+.upgrades button {
+  margin: 5px 0;
+}
+
+.upgrades .bulk-buy {
+  background-color: #ffa500;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.upgrades .bulk-buy:hover {
+  background-color: #ff8c00;
 }
 
 #reset-button {

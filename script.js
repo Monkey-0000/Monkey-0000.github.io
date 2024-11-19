@@ -1,26 +1,34 @@
 let bananas = 0;
 let cps = 0; // bananas per second
 let upgrades = {
-  cpsincrease: { cost: 10, cps: 1, count: 0 },
+  cpsincrease: { cost: 10, cps: 1, count: 0},
   grandma: { cost: 100, cps: 1, count: 0 },
   farm: { cost: 250, cps: 5, count: 0 },
-  factory: { cost: 500, cps: 20, count: 0 },
-  bakery: { cost: 750, cps: 50, count: 0 },
-  mine: { cost: 1000, cps: 100, count: 0 },
-  spaceship: { cost: 5000, cps: 500, count: 0 },
-  timeMachine: { cost: 20000, cps: 2000, count: 0 },
-  portal: { cost: 100000, cps: 10000, count: 0 },
-  dimensionRift: { cost: 500000, cps: 50000, count: 0 },
-  bananauniverse: { cost: 750000, cps: 5000000, count: 0 },
+  factory: { cost: 500, cps: 10, count: 0 },
+  bakery: { cost: 750, cps: 20, count: 0 },
+  mine: { cost: 1000, cps: 40, count: 0 },
+  spaceship: { cost: 5000, cps: 100, count: 0 },
+  timeMachine: { cost: 20000, cps: 250, count: 0 },
+  portal: { cost: 100000, cps: 500, count: 0 },
+  dimensionRift: { cost: 500000, cps: 1000, count: 0 },
+  bananauniverse: { cost: 750000, cps: 5000, count: 0 }
 };
 
-// Function to click the Banana
 function clickBanana() {
-  bananas += 1;
+  bananas++;
   updateDisplay();
 }
 
-// Function to buy an upgrade
+function updateDisplay() {
+  document.getElementById("banana-count").textContent = `Bananas: ${bananas.toLocaleString()}`;
+  document.getElementById("cps").textContent = `CPS: ${cps}`;
+  
+  // Update the upgrade counts
+  for (let upgrade in upgrades) {
+    document.getElementById(`${upgrade}-count`).textContent = `${upgrades[upgrade].count} Bought`;
+  }
+}
+
 function buyUpgrade(upgrade, quantity = 1) {
   let totalCost = 0;
   let canAfford = true;
@@ -46,66 +54,34 @@ function buyUpgrade(upgrade, quantity = 1) {
     }
 
     updateDisplay();
+    updateUpgradeButtons();  // Update the button text with new cost
   } else {
     alert(`Not enough bananas to buy ${quantity} of ${capitalize(upgrade)}!`);
   }
 }
 
-// Update display function
-function updateDisplay() {
-  // Format the banana count with commas
-  document.getElementById("banana-count").textContent = `Bananas: ${bananas.toLocaleString()}`;
-
-  // Update upgrade buttons and counts
+// Function to update upgrade buttons with the latest cost
+function updateUpgradeButtons() {
   for (let upgrade in upgrades) {
-    document.getElementById(`${upgrade}-count`).textContent = `${upgrades[upgrade].count} Bought`;
-    document.getElementById(`${upgrade}-button`).textContent = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost.toLocaleString()} Bananas`;
+    let button = document.getElementById(`${upgrade}-button`);
+    if (button) {
+      button.textContent = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost.toLocaleString()} Bananas`;
+    }
   }
 }
 
-// Auto-generate bananas
-setInterval(() => {
-  bananas += cps;
-  updateDisplay();
-}, 1000);
-
-// Utility function to capitalize upgrade names
+// Function to capitalize the first letter of an upgrade name
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Save game state to localStorage
-function saveGame() {
-  const gameData = {
-    bananas: bananas,
-    cps: cps,
-    upgrades: upgrades,
-  };
-  localStorage.setItem("BananaClickerSave", JSON.stringify(gameData));
-  console.log("Game Saved!");
-}
-
-// Load game state from localStorage
-function loadGame() {
-  const savedData = localStorage.getItem("BananaClickerSave");
-  if (savedData) {
-    const gameData = JSON.parse(savedData);
-    bananas = gameData.bananas || 0;
-    cps = gameData.cps || 0;
-    upgrades = gameData.upgrades || upgrades;
-    updateDisplay();
-    console.log("Game Loaded!");
-  }
-}
-
-// Reset game state
 function resetGame() {
-  localStorage.removeItem("BananaClickerSave");
-  location.reload();
+  bananas = 0;
+  cps = 0;
+  for (let upgrade in upgrades) {
+    upgrades[upgrade].count = 0;
+    upgrades[upgrade].cost = 10; // Reset costs to starting values
+  }
+  updateDisplay();
+  updateUpgradeButtons();
 }
-
-// Auto-save every 10 seconds
-setInterval(saveGame, 10000);
-
-// Load game on page load
-window.onload = loadGame;
