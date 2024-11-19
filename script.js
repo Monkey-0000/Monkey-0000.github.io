@@ -11,7 +11,7 @@ let upgrades = {
   timeMachine: { cost: 20000, cps: 500, count: 0 },
   portal: { cost: 100000, cps: 2000, count: 0 },
   dimensionRift: { cost: 500000, cps: 10000, count: 0 },
-  bananauniverse: { cost: 750000, cps: 50000, count: 0 },
+  bananauniverse: { cost: 750000, cps: 500000, count: 0 }, // Added Banana Universe
 };
 
 // Function to click the Banana
