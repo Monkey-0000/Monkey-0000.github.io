@@ -60,14 +60,16 @@ function resetGame() {
 
 // Update display function
 function updateDisplay() {
-  document.getElementById("banana-count").textContent = `Bananas: ${bananas}`;
+  // Format the banana count with commas
+  document.getElementById("banana-count").textContent = `Bananas: ${bananas.toLocaleString()}`;
   
   // Update upgrade buttons and counts
   for (let upgrade in upgrades) {
     document.getElementById(`${upgrade}-count`).textContent = `${upgrades[upgrade].count} Bought`;
-    document.getElementById(`${upgrade}-button`).textContent = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost} Bananas`;
+    document.getElementById(`${upgrade}-button`).textContent = `${capitalize(upgrade)} - Cost: ${upgrades[upgrade].cost.toLocaleString()} Bananas`;
   }
 }
+
 
 // Utility function to capitalize upgrade names
 function capitalize(str) {
